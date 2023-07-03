@@ -1,5 +1,7 @@
 from Helper.Helper import Helper
-
+from tqdm import tqdm
+import multiprocessing
+import time
 
 class StatusInvestPage:
     def __init__(self):
@@ -39,3 +41,20 @@ class StatusInvestPage:
                 rows += 1
             except:
                 break
+ 
+    def writter_file(self, path_file: str):
+        rows = 1
+        with open(path_file, 'w', newline='') as arquivo:
+            while True:
+                try:
+                    arquivo.write("nome=" + self.driver.get_text_element('xpath',"//div[@id='asDown']//div[@class='list']//a["+str(rows)+"]//small[@title='Nome da empresa/FII']") + ";")
+                    arquivo.write("ativo=" + self.driver.get_text_element('xpath',"//div[@id='asDown']//div[@class='list']//a["+str(rows)+"]//span[@title='ticker/código do ativo']") + ";")
+                    arquivo.write("valor_abertura=" + self.driver.get_text_element('xpath', "//div[@id='asDown']//div[@class='list']//a["+str(rows)+"]//div[@title='Valor de abertura']/span/span") + ";")
+                    arquivo.write("min=" + self.driver.get_text_element('xpath', "//div[@id='asDown']//div[@class='list']//a["+str(rows)+"]//div[@title='Mínima do dia']/span/span") + ";")
+                    arquivo.write("max=" + self.driver.get_text_element('xpath', "//div[@id='asDown']//div[@class='list']//a["+str(rows)+"]//div[@title='Máxima do dia']/span/span") + ";")
+                    arquivo.write("valor_fechamento=" + self.driver.get_text_element('xpath', "//div[@id='asDown']//div[@class='list']//a["+str(rows)+"]//div[@title='Valor de fechamento']/span/span") + ";")
+                    arquivo.write("volume_financeiro=" + self.driver.get_text_element('xpath', "//div[@id='asDown']//div[@class='list']//a["+str(rows)+"]//div[@title='Volume financeiro']/span/span") + ";")
+                    arquivo.write("variação=" + self.driver.get_text_element('xpath', "//div[@id='asDown']//div[@class='list']//a["+str(rows)+"]//span[@title='Variação atual no preço do ativo']").strip(" ").split('downward')[1] + "\n")
+                    rows += 1
+                except:
+                    break  

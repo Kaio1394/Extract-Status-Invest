@@ -5,6 +5,8 @@ from webdriver_manager.chrome import ChromeDriverManager
 # Setup driver
 class DriverUtil:
     @staticmethod
-    def get_instance(browser: str):
+    def get_instance(browser: str, mode = "--headless=new"):
         if browser == 'chrome':
-            return webdriver.Chrome(service=Service(ChromeDriverManager().install()),options = webdriver.ChromeOptions())
+            options = webdriver.ChromeOptions()
+            options.add_argument(mode)
+            return webdriver.Chrome(service=Service(ChromeDriverManager().install()),options = options)
