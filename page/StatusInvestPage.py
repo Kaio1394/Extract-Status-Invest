@@ -27,8 +27,9 @@ class StatusInvestPage:
         self.driver.send_click('xpath', f"//*[@id='{down_or_up}']//span[text()='TODOS']")
     
     def click_page_home(self):
-        self.driver.send_click('xpath', "//a[@title='Página inicial']")
-        self.driver.wait_until(10, 'xpath', "//h2[a[@class='text-main']]/small[text()='BOVESPA e BM&F']")
+        # self.driver.send_click('xpath', "//a[@title='Página inicial']")
+        # self.driver.wait_until(10, 'xpath', "//h2[a[@class='text-main']]/small[text()='BOVESPA e BM&F']")
+        self.driver.back_page()
 
     def close_status_invest(self):
         self.driver.close()

@@ -30,6 +30,9 @@ class Helper:
             case 'id':
                 self.driver.find_element(By.ID, by_value).click()
 
+    def back_page(self):
+        self.driver.back()
+        
     def close(self):
         self.driver.close()
     
