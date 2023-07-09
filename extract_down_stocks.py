@@ -4,7 +4,6 @@ from page.StatusInvestPage import StatusInvestPage
                 
 
 if __name__ == '__main__':
-
     path = "C:/RPA/CSV/"
     file_name = "dados_ativos_em_baixa.txt"
     # Criando pasta que será salvo os arquivos CSV's
